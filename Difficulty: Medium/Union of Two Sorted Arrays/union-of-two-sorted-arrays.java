@@ -52,8 +52,58 @@ class Main
 class Solution{
     //Function to return a list containing the union of the two arrays.
     public static ArrayList<Integer> findUnion(int arr1[], int arr2[], int n, int m){
-       
-       
+      
+      // Time Complexity -> 0(n+m)
+      //Space Complexity -> 0(1)
+      //Apply two pointer approach.
+      int i = 0;
+      int j = 0;
+      
+      ArrayList<Integer> list = new ArrayList<>();
+      while(i<n && j<m){
+          if(arr1[i] <= arr2[j]){
+             
+             if(list.size() == 0 || list.get(list.size()-1) != arr1[i]){
+               
+               list.add(arr1[i]);
+               
+             } 
+             i++;
+          }else{
+              if(list.size() == 0  || list.get(list.size()-1) != arr2[j]){
+               
+               list.add(arr2[j]);
+              } 
+             j++;
+          }
+          
+      }
+      
+      // the elements which are left.
+      while(i<n){
+          if(list.get(list.size()-1)!= arr1[i]){
+               
+               list.add(arr1[i]);
+              
+            }
+             i++;
+      }
+       while(j<m){
+          if(list.get(list.size()-1)!= arr2[j]){
+               
+               list.add(arr2[j]);
+              
+            }
+             j++;
+      }
+      
+      
+     return list;
+      
+      
+      /* 
+      This code Time complexity is -> 0(n + m) + 0(n Log n) 
+      
        HashSet<Integer> set = new HashSet<>();
        
        for(int i : arr1){
@@ -67,8 +117,9 @@ class Solution{
        for(Integer ele: set){
            list.add(ele);
        }
-       Collections.sort(list);
+       Collections.sort(list); //here extra time take 0 (n log n)
        return list;
+       */
     }
 }
 
