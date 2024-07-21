@@ -51,7 +51,7 @@ class Solution{
         int row = matrix.length;
         int col = matrix[0].length;
         for(int i=0;i<row;i++){
-            for(int j = i+1;j<col;j++){
+            for(int j = 0;j<i;j++){
                 
                 //swap
                 int tem = matrix[i][j];
