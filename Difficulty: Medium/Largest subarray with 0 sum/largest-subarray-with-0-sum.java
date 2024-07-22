@@ -31,6 +31,9 @@ class GfG{
     int maxLen(int arr[], int n){
         
        
+       
+       //Apply the same logic Largest subarray with 0 sum with bit change.
+       
        HashMap<Integer, Integer> map = new HashMap<>();
        int sum = 0;
        int maxLen = Integer.MIN_VALUE;
