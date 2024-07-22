@@ -38,7 +38,7 @@ class GfG{
            sum += arr[i];
            
            if(sum == 0){
-               maxLen = i+1;
+               maxLen = Math.max(maxLen, i+1);
            }
            if(map.containsKey(sum-0)){
                maxLen = Math.max(maxLen, i - map.get(sum));
