@@ -31,6 +31,9 @@ class GFG {
 class Solution {
     public int findKRotation(List<Integer> arr) {
        
+       
+       //This the concept of find min in the Roated Sorted array 
+       //Just return it's index and u get the ans..
        int si = 0;
        int ei = arr.size()-1;
        int min = Integer.MAX_VALUE;
