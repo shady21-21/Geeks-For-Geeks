@@ -37,17 +37,33 @@ public class Main {
 
 class Solution {
     boolean twoSum(int arr[], int target) {
-       
-       HashMap<Integer, Integer> map = new HashMap<>();
-       int n = arr.length;
-       for(int i = 0;i<n;i++){
-           if(map.containsKey(target - arr[i])){
-               // i will do something.
-               return true;
-           }else{
-               map.put(arr[i], i);
+        
+        //brute force // O(n^2)
+        // int n = arr.length;
+        // boolean flag = false;
+        // for(int i = 0;i<n;i++){
+        //     for(int j = 0;j<n;j++){
+        //         if(arr[i] + arr[j] == target){
+        //             flag = true;
+        //         }
+        //     }
+        // }
+        // return (flag == true) ? true : false;
+        
+        
+      //O(n) ->sc
+      //0(n) ->tc
+      HashMap<Integer, Integer> map = new HashMap<>();
+      int n = arr.length;
+      for(int i = 0;i<n;i++){
+          if(map.containsKey(target - arr[i])){
+              // i will do something.
+              return true;
+            }else{
+              map.put(arr[i], i);
             }
-       }
-       return false;
+      }
+      return false;
+    
     }
 }
