@@ -6,22 +6,24 @@ import java.util.*;
 
 // } Driver Code Ends
 class Solution {
-    
 
     int countPairs(int arr[], int target) {
-        // Your code here
+       
+        Map<Integer, Integer> freq = new HashMap<>();
+        int count = 0;
         
-       int cnt = 0;
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int n = arr.length;
-         for(int i = 0;i<n;i++){
-            int xx = target - arr[i];
-            if(map.containsKey(xx)){
-                cnt+= map.get(xx);
+        for(int i = 0;i<arr.length;i++) {
+            int complement = target - arr[i];
+            
+            if (freq.containsKey(complement)) {
+               count+= freq.get(complement);
             }
-            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+            freq.put(arr[i], freq.getOrDefault(arr[i], 0)+1);
+           
         }
-        return cnt;
+        
+        return count;
+
     }
 }
 
