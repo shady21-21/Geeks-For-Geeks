@@ -19,6 +19,7 @@ public class Main {
             temp = temp.next;
         }
         System.out.println();
+        System.out.println("~");
     }
 
     // Insert node into the list in a sorted manner
@@ -74,8 +75,6 @@ public class Main {
 
 
 /*
-  Merge two linked lists
-  head pointer input could be NULL as well for empty list
   Node is defined as
     class Node
     {
@@ -86,35 +85,31 @@ public class Main {
 */
 
 class Solution {
-    // Function to merge two sorted linked list.
     Node sortedMerge(Node head1, Node head2) {
         
-        Node tem1 = head1;
+        PriorityQueue<Node> pq = new PriorityQueue<>((x,y) -> x.data - y.data);
+        
+        Node tem = head1;
+        while(tem!= null){
+            pq.add(tem);
+            tem = tem.next;
+        }
+        
         Node tem2 = head2;
-        Node dummy = new Node(-1);
-        Node d = dummy;
-        while(tem1!= null && tem2!= null){
-            if(tem1.data > tem2.data){
-               d.next = tem2;
-               d = d.next;
-               tem2 = tem2.next;
-            }else{
-                d.next = tem1;
-                d = d.next;
-                tem1 = tem1.next;
-            }
-        }
-        //do for rest of the nodes
-        while(tem1!= null){
-            d.next = tem1;
-            d = d.next;
-            tem1 = tem1.next;
-        }
-         while(tem2!= null){
-            d.next = tem2;
-            d = d.next;
+        while(tem2!= null){
+            pq.add(tem2);
             tem2 = tem2.next;
         }
-        return dummy.next;
+        
+        
+        Node newHead = pq.poll();
+        Node curr = newHead; //take a pointer on newHead, coz we don't loss our head.
+        while(!pq.isEmpty()){
+            
+            curr.next = pq.poll();
+            curr = curr.next;
+        }
+        curr.next = null;
+        return newHead;
     }
 }
