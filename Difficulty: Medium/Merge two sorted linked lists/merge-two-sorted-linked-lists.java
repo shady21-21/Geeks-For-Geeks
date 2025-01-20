@@ -87,29 +87,41 @@ public class Main {
 class Solution {
     Node sortedMerge(Node head1, Node head2) {
         
-        PriorityQueue<Node> pq = new PriorityQueue<>((x,y) -> x.data - y.data);
         
-        Node tem = head1;
-        while(tem!= null){
-            pq.add(tem);
-            tem = tem.next;
-        }
+        Node dummyNode = new Node(-1);
         
+        Node dummyPtr = dummyNode;
+        
+        Node tem1 = head1;
         Node tem2 = head2;
-        while(tem2!= null){
-            pq.add(tem2);
+        
+        while(tem1!= null && tem2!= null){
+            if(tem1.data <= tem2.data){
+                dummyPtr.next = tem1;
+                tem1 = tem1.next;
+                dummyPtr = dummyPtr.next;
+                
+            }else{
+                dummyPtr.next = tem2;
+                tem2 = tem2.next;
+                dummyPtr = dummyPtr.next;
+               
+            }
+        }
+        
+        // check for those nodes which are left.
+        while(tem1!= null){
+            dummyPtr.next = tem1;
+            tem1 = tem1.next;
+            dummyPtr = dummyPtr.next;
+        }
+        
+         while(tem2!= null){
+            dummyPtr.next = tem2;
             tem2 = tem2.next;
+            dummyPtr = dummyPtr.next;
         }
         
-        
-        Node newHead = pq.poll();
-        Node curr = newHead; //take a pointer on newHead, coz we don't loss our head.
-        while(!pq.isEmpty()){
-            
-            curr.next = pq.poll();
-            curr = curr.next;
-        }
-        curr.next = null;
-        return newHead;
+        return dummyNode.next;
     }
 }
