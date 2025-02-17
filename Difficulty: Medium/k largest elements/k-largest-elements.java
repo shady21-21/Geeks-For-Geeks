@@ -10,17 +10,28 @@ class Solution {
     public ArrayList<Integer> kLargest(int[] arr, int k) {
        
         ArrayList<Integer> list = new ArrayList<>();
-        PriorityQueue<Integer> pq = new PriorityQueue<>((x, y) -> y - x);
         
-        for(int xx : arr){
-            pq.offer(xx);
-        }
+        // PriorityQueue<Integer> pq = new PriorityQueue<>((x, y) -> y - x);
+        
+        // for(int xx : arr){
+        //     pq.offer(xx);
+        // }
        
-        while(k > 0){
-           list.add(pq.poll());
-           k--;
+        // while(k > 0){
+        //   list.add(pq.poll());
+        //   k--;
+        // }
+        
+        
+        Arrays.sort(arr);
+        int n = arr.length;
+        
+        // System.out.println("ARRAYS : " + Arrays.toString(arr));
+        
+        for(int i = n-1; i >= n-k; i--){
+            list.add(arr[i]);
         }
-       return list;
+        return list;
     }
 }
 
