@@ -3,26 +3,60 @@ import java.util.*;
 
 
 // } Driver Code Ends
+
+class Distance{
+    int[]arr;
+    int dist;
+    
+    Distance(int[]arr){
+        this.arr = arr;
+        this.dist = arr[0]*arr[0] + arr[1]*arr[1];
+    }
+}
+
+
 class Solution {
     public int[][] kClosest(int[][] points, int k) {
         // Your code here
         
-        PriorityQueue<int[]> pq = new PriorityQueue<>(
-          (x,y) -> (x[0]*x[0] + x[1]*x[1]) - (y[0]*y[0] + y[1]*y[1])   
+        // PriorityQueue<int[]> pq = new PriorityQueue<>(
+        //   (x,y) -> (x[0]*x[0] + x[1]*x[1]) - (y[0]*y[0] + y[1]*y[1])   
+        // );
+        
+        
+        // for(int[] xx : points){
+        //     pq.offer(xx);
+        // }
+        
+        // int[][]ans = new int[k][2];
+        // int index = 0;
+        // while(k>0){
+        //     ans[index] = pq.poll();
+        //     index++;
+        //     k--;
+        // }
+        
+        
+        
+        
+        //++++++++++++ USE CLASS APPROACH++++++++++++
+        
+        PriorityQueue<Distance> pq = new PriorityQueue<>(
+            (x,y) -> x.dist - y.dist
         );
         
+        
         for(int[] xx : points){
-            pq.offer(xx);
+            pq.offer(new Distance(xx));
         }
         
         int[][]ans = new int[k][2];
         int index = 0;
         while(k>0){
-            ans[index] = pq.poll();
+            ans[index] = pq.poll().arr;
             index++;
             k--;
         }
-        
         return ans;
     }
 }
